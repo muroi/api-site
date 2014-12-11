@@ -211,6 +211,24 @@
             <para>To create a bootable volume, include the image ID
                 and set the <code>bootable</code> flag to
                     <code>true</code> in the request body.</para>
+            <para>pre condition</para>
+            <itemizedlist>
+                <listitem><para>There is free storage space required for the volume creation of the specified size.</para></listitem>
+                <listitem><para>Volume creation is allowed within quota.</para></listitem>
+            </itemizedlist>
+            <para>post condition(success)</para>
+            <itemizedlist>
+                <listitem><para>Volume status via the API becomes available.</para></listitem>
+                <listitem><para>Volume is created in the storages which Cinder manages.</para></listitem>
+                <listitem><para>If you specify a snapshot ID, the new volume is created on the same availability zone as the volume acquired its snapshot.</para></listitem>
+                <listitem><para>If you specify the source volume ID, the new volume is created on the same availability zone with the source volume.</para></listitem>
+                <listitem><para>If you specify a snapshot ID, the size of new volume is same with the snapshot.</para></listitem>
+            </itemizedlist>
+            <para>post condition(error)</para>
+            <itemizedlist>
+                <listitem><para>Volume status remains in creating or becomes error.</para></listitem>
+                <listitem><para>Volume is not created in the storages which Cinder manages.</para></listitem>
+            </itemizedlist>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -470,6 +488,10 @@
             title="Show volume information">
             <para role="shortdesc">Shows information about a specified
                 volume.</para>
+            <para>pre condition</para>
+            <itemizedlist>
+                <listitem><para>Exists specified volume.</para></listitem>
+            </itemizedlist>
         </wadl:doc>
         <response status="200">
             <representation mediaType="application/xml">
@@ -545,7 +567,23 @@
     <method name="DELETE" id="deleteVolume">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Delete volume">
-            <para role="shortdesc">Deletes a specified volume.  Will fail if any snapshots based on the volume exist.</para>
+            <para role="shortdesc">Deletes a specified volume.</para>
+            <para>pre condition</para>
+            <itemizedlist>
+                <listitem><para>Volume status must be available, in-use, error or error_restoring.</para></listitem>
+                <listitem><para>There is no snapshot related to the specified volume.</para></listitem>
+                <listitem><para>The specified volume isn't in migrating.</para></listitem>
+            </itemizedlist>
+            <para>post condition(success)</para>
+            <itemizedlist>
+                <listitem><para>The volume is deleted in volume index.</para></listitem>
+                <listitem><para>The volume managed by the Cinder is deleted on storage.</para></listitem>
+            </itemizedlist>
+            <para>post condition(error)</para>
+            <itemizedlist>
+                <listitem><para>Volume status remains in deleting or becomes error_deleting.</para></listitem>
+                <listitem><para>The volume managed by the Cinder does not be deleted from storages.</para></listitem>
+            </itemizedlist>
         </wadl:doc>
         <response status="202"/>
     </method>
