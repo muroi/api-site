@@ -211,23 +211,24 @@
             <para>To create a bootable volume, include the image ID
                 and set the <code>bootable</code> flag to
                     <code>true</code> in the request body.</para>
-            <para>pre condition</para>
+            <para>Preconditions</para>
             <itemizedlist>
-                <listitem><para>There is free storage space required for the volume creation of the specified size.</para></listitem>
-                <listitem><para>Volume creation is allowed within quota.</para></listitem>
+                <listitem>The user must have enough volume storage quota
+                          remaining to create a volume of size requested.</listitem>
             </itemizedlist>
-            <para>post condition(success)</para>
+            <para>Asynchronous Postconditions</para>
             <itemizedlist>
-                <listitem><para>Volume status via the API becomes available.</para></listitem>
-                <listitem><para>Volume is created in the storages which Cinder manages.</para></listitem>
-                <listitem><para>If you specify a snapshot ID, the new volume is created on the same availability zone as the volume acquired its snapshot.</para></listitem>
-                <listitem><para>If you specify the source volume ID, the new volume is created on the same availability zone with the source volume.</para></listitem>
-                <listitem><para>If you specify a snapshot ID, the size of new volume is same with the snapshot.</para></listitem>
+                <listitem>You can see the volume status through API calls.</listitem>
+                <listitem>You can see the created volume in the storage
+                          system that OpenStack Block Storage manages.</listitem>
             </itemizedlist>
-            <para>post condition(error)</para>
+            <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem><para>Volume status remains in creating or becomes error.</para></listitem>
-                <listitem><para>Volume is not created in the storages which Cinder manages.</para></listitem>
+                <listitem>Volume status remains in creating or becomes error.</listitem>
+                <listitem>Volume is not created in the storages which OpenStack
+                          Block Storage manages.</listitem>
+                <listitem>The storage node needs enough free storage space to match
+                          the specified size of the volume creation request.</listitem>
             </itemizedlist>
         </wadl:doc>
         <request>
@@ -257,7 +258,8 @@
                         xml:lang="EN">
                         <para>To create a volume from an existing
                             volume, specify the ID of the existing
-                            volume.</para></wadl:doc>
+                            volume. If specified, the volume is created
+                            with same size of the source volume.</para></wadl:doc>
                 </param>
                 <param name="description" style="plain"
                     type="xsd:string" required="false">
@@ -272,7 +274,9 @@
                         xml:lang="EN">
                         <para>To create a volume from an existing
                             snapshot, specify the ID of the existing
-                            volume snapshot.</para></wadl:doc>
+                            volume snapshot. If specified,
+                            the volume is created in same availavility
+                            zone and with same size of the snapshot.</para></wadl:doc>
                 </param>
                 <param name="size" style="plain" type="xsd:int"
                     required="true">
@@ -488,9 +492,9 @@
             title="Show volume information">
             <para role="shortdesc">Shows information about a specified
                 volume.</para>
-            <para>pre condition</para>
+            <para>Preconditions</para>
             <itemizedlist>
-                <listitem><para>Exists specified volume.</para></listitem>
+                <listitem>Exists specified volume.</listitem>
             </itemizedlist>
         </wadl:doc>
         <response status="200">
@@ -568,21 +572,27 @@
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Delete volume">
             <para role="shortdesc">Deletes a specified volume.</para>
-            <para>pre condition</para>
+            <para>Preconditions</para>
             <itemizedlist>
-                <listitem><para>Volume status must be available, in-use, error or error_restoring.</para></listitem>
-                <listitem><para>There is no snapshot related to the specified volume.</para></listitem>
-                <listitem><para>The specified volume isn't in migrating.</para></listitem>
+                <listitem>Volume status must be available, in-use, error,
+                          or error_restoring.</listitem>
+                <listitem>You cannot already have a snapthot related to
+                          the specified volume.</listitem>
+                <listitem>You cannot delete a volume that is in a
+                          migration.</listitem>
             </itemizedlist>
-            <para>post condition(success)</para>
+            <para>Asynchronous Postconditions</para>
             <itemizedlist>
-                <listitem><para>The volume is deleted in volume index.</para></listitem>
-                <listitem><para>The volume managed by the Cinder is deleted on storage.</para></listitem>
+                <listitem>The volume is deleted in volume index.</listitem>
+                <listitem>The volume managed by OpenStack Block Storage
+                          is deleted in storage node.</listitem>
             </itemizedlist>
-            <para>post condition(error)</para>
+            <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem><para>Volume status remains in deleting or becomes error_deleting.</para></listitem>
-                <listitem><para>The volume managed by the Cinder does not be deleted from storages.</para></listitem>
+                <listitem>Volume status remains in deleting or becomes
+                          error_deleting.</listitem>
+                <listitem>The volume managed by OpenStack Block Storage
+                          does not be deleted from storages.</listitem>
             </itemizedlist>
         </wadl:doc>
         <response status="202"/>
