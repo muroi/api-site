@@ -213,22 +213,22 @@
                     <code>true</code> in the request body.</para>
             <para>Preconditions</para>
             <itemizedlist>
-                <listitem>The user must have enough volume storage quota
-                          remaining to create a volume of size requested.</listitem>
+                <listitem><para>The user must have enough volume storage quota
+                          remaining to create a volume of size requested.</para></listitem>
             </itemizedlist>
             <para>Asynchronous Postconditions</para>
             <itemizedlist>
-                <listitem>You can see the volume status through API calls.</listitem>
-                <listitem>You can see the created volume in the storage
-                          system that OpenStack Block Storage manages.</listitem>
+                <listitem><para>You can see the volume status through API calls.</para></listitem>
+                <listitem><para>You can see the created volume in the storage
+                          system that OpenStack Block Storage manages.</para></listitem>
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem>Volume status remains in creating or becomes error.</listitem>
-                <listitem>Volume is not created in the storages which OpenStack
-                          Block Storage manages.</listitem>
-                <listitem>The storage node needs enough free storage space to match
-                          the specified size of the volume creation request.</listitem>
+                <listitem><para>Volume status remains in creating or becomes error.</para></listitem>
+                <listitem><para>Volume is not created in the storages which OpenStack
+                          Block Storage manages.</para></listitem>
+                <listitem><para>The storage node needs enough free storage space to match
+                          the specified size of the volume creation request.</para></listitem>
             </itemizedlist>
         </wadl:doc>
         <request>
@@ -494,7 +494,7 @@
                 volume.</para>
             <para>Preconditions</para>
             <itemizedlist>
-                <listitem>Exists specified volume.</listitem>
+                <listitem><para>Exists specified volume.</para></listitem>
             </itemizedlist>
         </wadl:doc>
         <response status="200">
@@ -574,25 +574,25 @@
             <para role="shortdesc">Deletes a specified volume.</para>
             <para>Preconditions</para>
             <itemizedlist>
-                <listitem>Volume status must be available, in-use, error,
-                          or error_restoring.</listitem>
-                <listitem>You cannot already have a snapthot related to
-                          the specified volume.</listitem>
-                <listitem>You cannot delete a volume that is in a
-                          migration.</listitem>
+                <listitem><para>Volume status must be available, in-use, error,
+                          or error_restoring.</para></listitem>
+                <listitem><para>You cannot already have a snapthot related to
+                          the specified volume.</para></listitem>
+                <listitem><para>You cannot delete a volume that is in a
+                          migration.</para></listitem>
             </itemizedlist>
             <para>Asynchronous Postconditions</para>
             <itemizedlist>
-                <listitem>The volume is deleted in volume index.</listitem>
-                <listitem>The volume managed by OpenStack Block Storage
-                          is deleted in storage node.</listitem>
+                <listitem><para>The volume is deleted in volume index.</para></listitem>
+                <listitem><para>The volume managed by OpenStack Block Storage
+                          is deleted in storage node.</para></listitem>
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem>Volume status remains in deleting or becomes
-                          error_deleting.</listitem>
-                <listitem>The volume managed by OpenStack Block Storage
-                          does not be deleted from storages.</listitem>
+                <listitem><para>Volume status remains in deleting or becomes
+                          error_deleting.</para></listitem>
+                <listitem><para>The volume managed by OpenStack Block Storage
+                          does not be deleted from storages.</para></listitem>
             </itemizedlist>
         </wadl:doc>
         <response status="202"/>
