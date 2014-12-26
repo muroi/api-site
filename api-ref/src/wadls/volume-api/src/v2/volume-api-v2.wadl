@@ -218,15 +218,15 @@
             </itemizedlist>
             <para>Asynchronous Postconditions</para>
             <itemizedlist>
-                <listitem><para>With correct permissions, you can see the volume status 
+                <listitem><para>With correct permissions, you can see the volume status
                 as <code>available</code> through API calls.</para></listitem>
                 <listitem><para>With correct access, you can see the created volume
                 in the storage system that OpenStack Block Storage manages.</para></listitem>
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem><para>If volume status remains <code>creating</code> or 
-                shows another error status, the request failed. Ensure you meet the preconditions 
+                <listitem><para>If volume status remains <code>creating</code> or
+                shows another error status, the request failed. Ensure you meet the preconditions
                 then investigate the storage backend.</para></listitem>
                 <listitem><para>Volume is not created in the storages which OpenStack
                           Block Storage manages.</para></listitem>
@@ -577,7 +577,7 @@
             <para role="shortdesc">Deletes a specified volume.</para>
             <para>Preconditions</para>
             <itemizedlist>
-                <listitem><para>Volume status must be <code>available</code>, 
+                <listitem><para>Volume status must be <code>available</code>,
                 <code>in-use</code>, <code>error</code>, or <code>error_restoring</code>.</para></listitem>
                 <listitem><para>You cannot already have a snapthot related to
                           the specified volume.</para></listitem>
