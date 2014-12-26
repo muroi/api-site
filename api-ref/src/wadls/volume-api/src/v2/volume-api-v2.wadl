@@ -218,13 +218,16 @@
             </itemizedlist>
             <para>Asynchronous Postconditions</para>
             <itemizedlist>
-                <listitem><para>You can see the volume status through API calls.</para></listitem>
-                <listitem><para>You can see the created volume in the storage
-                          system that OpenStack Block Storage manages.</para></listitem>
+                <listitem><para>With correct permissions, you can see the volume status 
+                as <code>available</code> through API calls.</para></listitem>
+                <listitem><para>With correct access, you can see the created volume
+                in the storage system that OpenStack Block Storage manages.</para></listitem>
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem><para>Volume status remains in creating or becomes error.</para></listitem>
+                <listitem><para>If volume status remains <code>creating</code> or 
+                shows another error status, the request failed. Ensure you meet the preconditions 
+                then investigate the storage backend.</para></listitem>
                 <listitem><para>Volume is not created in the storages which OpenStack
                           Block Storage manages.</para></listitem>
                 <listitem><para>The storage node needs enough free storage space to match
@@ -574,8 +577,8 @@
             <para role="shortdesc">Deletes a specified volume.</para>
             <para>Preconditions</para>
             <itemizedlist>
-                <listitem><para>Volume status must be available, in-use, error,
-                          or error_restoring.</para></listitem>
+                <listitem><para>Volume status must be <code>available</code>, 
+                <code>in-use</code>, <code>error</code>, or <code>error_restoring</code>.</para></listitem>
                 <listitem><para>You cannot already have a snapthot related to
                           the specified volume.</para></listitem>
                 <listitem><para>You cannot delete a volume that is in a
@@ -589,10 +592,11 @@
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem><para>Volume status remains in deleting or becomes
-                          error_deleting.</para></listitem>
+                <listitem><para>If volume status remains in <code>deleting</code> or
+                becomes <code>error_deleting</code> the request failed. Ensure you meet
+                the preconditions then investigate the storage backend.</para></listitem>
                 <listitem><para>The volume managed by OpenStack Block Storage
-                          does not be deleted from storages.</para></listitem>
+                          is not deleted from storages.</para></listitem>
             </itemizedlist>
         </wadl:doc>
         <response status="202"/>
