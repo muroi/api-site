@@ -293,11 +293,11 @@
                     the updated values of the image's attributes.
                     </para></listitem>
                 <listitem><para>With correct permissions, you can see
-                    the image status as <code>active</code> via API calls
+                    the image status as <code>active</code> through API calls
                     after adding a location to the image which had no
                     location.</para></listitem>
                 <listitem><para>With correct permissions, you can see
-                    the image status as <code>queued</code> via API calls
+                    the image status as <code>queued</code> through API calls
                     after removing all locations from the image
                     </para></listitem>
             </itemizedlist>
@@ -433,8 +433,9 @@
                     some infomation in your requests or exceed the quota
                     you are allowed to use. Ensure you meet the preconditions
                     then investigate the your API requests.</para></listitem>
-                <listitem><para>The storage node needs enough free storage
-                    space to match the size of the data.</para></listitem>
+                <listitem><para>The storage backends for storing the data need
+                    enough free storage space to match the size of the data.
+                    </para></listitem>
             </itemizedlist>
         </wadl:doc>
         <request>
@@ -469,9 +470,9 @@
                 <listitem><para>You can download the binary image data
                     in your machine if the specified image has image
                     data.</para></listitem>
-                <listitem><para>If image data exists, you recieve the
+                <listitem><para>If image data exists, you receive the
                     HTTP 200 status code.</para></listitem>
-                <listitem><para>If no image data exists, you recieve
+                <listitem><para>If no image data exists, you receive
                     the HTTP 204 status code.</para></listitem>
             </itemizedlist>
         </wadl:doc>
