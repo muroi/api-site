@@ -514,6 +514,13 @@
             <para role="shortdesc">Shows image member details.</para>
             <para>Response body is a single image member entity.
                 (Since Image API 2.2.)</para>
+            <para>Preconditions</para>
+            <itemizedlist>
+                <listitem><para>The specified image must exist.
+                </para></listitem>
+                <listitem><para>You need to be a owner or a member of
+                    the specified image.</para></listitem>
+            </itemizedlist>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -542,6 +549,13 @@
             <para>If a user with whom this image has not been shared
                 makes this call, the call returns the HTTP 404 status
                 code.</para>
+            <para>Preconditions</para>
+            <itemizedlist>
+                <listitem><para>The specified image must exist.
+                </para></listitem>
+                <listitem><para>You need to be a owner or a member of
+                    the specified image.</para></listitem>
+            </itemizedlist>
         </wadl:doc>
         <request>
             <representation mediaType="application/json"
@@ -564,6 +578,33 @@
             title="Create image member">
             <para role="shortdesc">Adds a specified tenant ID as an
                 image member. (Since Image API v2.1.)</para>
+            <para>Preconditions</para>
+            <itemizedlist>
+                <listitem><para>The specified images must exist.
+                </para></listitem>
+                <listitem><para>You can only add a new member to an
+                image which 'visibility' attribute is <code>private</code>.
+                </para></listitem>
+                <listitem><para>You need to be a owner of the specified
+                image.</para></listitem>
+            </itemizedlist>
+            <para>Synchronous Postconditions</para>
+            <itemizedlist>
+                <listitem><para>With correct permissions, you can see
+                the member status of the image as <code>pending</code>
+                through API calls.</para></listitem>
+            </itemizedlist>
+            <para>Troubleshooting</para>
+            <itemizedlist>
+                <listitem><para>The response returns the HTTP 403 status
+                code when the 'visibility' attribute is set to
+                <code>public</code> even if you have correct permissions.
+                Ensure you meet the preconditions then investigate the
+                attribute.</para></listitem>
+                <listitem><para>The response returns the HTTP 409 status
+                code if the member has already been a member of the image.
+                </para></listitem>
+            </itemizedlist>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -591,6 +632,22 @@
             <para role="shortdesc">Sets the specified status for the
                 specified member of the specified image. (Since Image
                 API v2.1.)</para>
+            <para>Preconditions</para>
+            <itemizedlist>
+                <listitem><para>The specified images must exist.
+                </para></listitem>
+                <listitem><para>You need to be a member of the
+                specified image.</para></listitem>
+            </itemizedlist>
+            <para>Synchronous Postconditions</para>
+            <itemizedlist>
+                <listitem><para>With correct permissions, you can see
+                the image in responses of List images API if you update
+                the member status to <code>accepted</code>.</para></listitem>
+                <listitem><para>With correct permissions, you can see
+                the updated member status of the image through API
+                calls.</para></listitem>
+            </itemizedlist>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -619,6 +676,26 @@
             <para role="shortdesc">Deletes a specified tenant ID from
                 the member list of the specified image. (Since Image
                 API v2.1.)</para>
+            <para>Preconditions</para>
+            <itemizedlist>
+                <listitem><para>The specified image must exist.
+                </para></listitem>
+                <listitem><para>You need to be a owner of the specified
+                image.</para></listitem>
+            </itemizedlist>
+            <para>Synchronous Postconditions</para>
+            <itemizedlist>
+                <listitem><para>The specified member is removed from
+                the image members.</para></listitem>
+            </itemizedlist>
+            <para>Troubleshooting</para>
+            <itemizedlist>
+                <listitem><para>The response returns the HTTP 403 status
+                code when you are not a owner of the specifid image even
+                if you have correct permissions. Ensure you meet the
+                preconditions then investigate the attribute.
+                </para></listitem>
+            </itemizedlist>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
