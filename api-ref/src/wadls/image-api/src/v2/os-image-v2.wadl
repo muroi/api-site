@@ -518,7 +518,7 @@
             <itemizedlist>
                 <listitem><para>The specified image must exist.
                 </para></listitem>
-                <listitem><para>You need to be a owner or a member of
+                <listitem><para>You need to be the owner or a member of
                     the specified image.</para></listitem>
             </itemizedlist>
         </wadl:doc>
@@ -553,7 +553,7 @@
             <itemizedlist>
                 <listitem><para>The specified image must exist.
                 </para></listitem>
-                <listitem><para>You need to be a owner or a member of
+                <listitem><para>You need to be the owner or a member of
                     the specified image.</para></listitem>
             </itemizedlist>
         </wadl:doc>
@@ -585,7 +585,7 @@
                 <listitem><para>You can only add a new member to an
                 image which 'visibility' attribute is <code>private</code>.
                 </para></listitem>
-                <listitem><para>You need to be a owner of the specified
+                <listitem><para>You need to be the owner of the specified
                 image.</para></listitem>
             </itemizedlist>
             <para>Synchronous Postconditions</para>
@@ -596,12 +596,12 @@
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem><para>The response returns the HTTP 403 status
-                code when the 'visibility' attribute is set to
-                <code>public</code> even if you have correct permissions.
-                Ensure you meet the preconditions then investigate the
-                attribute.</para></listitem>
-                <listitem><para>The response returns the HTTP 409 status
+                <listitem><para>Even if you have correct permissions,
+                if the 'visibility' attribute is set to
+                <code>public</code>, the request returns the HTTP 403
+                status code. Ensure you meet the preconditions then
+                investigate the attribute.</para></listitem>
+                <listitem><para>The request returns the HTTP 409 status
                 code if the member has already been a member of the image.
                 </para></listitem>
             </itemizedlist>
@@ -641,9 +641,10 @@
             </itemizedlist>
             <para>Synchronous Postconditions</para>
             <itemizedlist>
-                <listitem><para>With correct permissions, you can see
-                the image in responses of List images API if you update
-                the member status to <code>accepted</code>.</para></listitem>
+                <listitem><para>If you update the member status to
+                <code>accepted</code>, and have the correct permissions,
+                you will see the image in responses of List Images API
+                call.</para></listitem>
                 <listitem><para>With correct permissions, you can see
                 the updated member status of the image through API
                 calls.</para></listitem>
@@ -680,7 +681,7 @@
             <itemizedlist>
                 <listitem><para>The specified image must exist.
                 </para></listitem>
-                <listitem><para>You need to be a owner of the specified
+                <listitem><para>You need to be the owner of the specified
                 image.</para></listitem>
             </itemizedlist>
             <para>Synchronous Postconditions</para>
@@ -690,10 +691,11 @@
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
-                <listitem><para>The response returns the HTTP 403 status
-                code when you are not a owner of the specifid image even
-                if you have correct permissions. Ensure you meet the
-                preconditions then investigate the attribute.
+                <listitem><para>Even if you have correct permissions,
+                it you are not the owner of the specified image,
+                the request returns the HTTP 403 status code.
+                Ensure you meet the preconditions then investigate
+                the attribute.
                 </para></listitem>
             </itemizedlist>
         </wadl:doc>
