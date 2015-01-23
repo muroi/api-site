@@ -601,8 +601,11 @@
                 <code>public</code>, the request returns the HTTP 403
                 status code. Ensure you meet the preconditions then
                 investigate the attribute.</para></listitem>
-                <listitem><para>The request returns the HTTP 409 status
-                code if the member has already been a member of the image.
+                <listitem><para>If the member in the request is
+                already a member for the image, the service returns
+                the HTTP 409 "Conflict" status code in case you
+                meant a different member. Double-check the member
+                to ensure you want it to be a member of the image.
                 </para></listitem>
             </itemizedlist>
         </wadl:doc>
@@ -624,6 +627,16 @@
                     />
                 </wadl:doc>
             </representation>
+        </response>
+        <response status="403"  xmlns="http://wadl.dev.java.net/2009/02">
+        <representation mediaType="application/xml"
+                        element="csapi:invalidVisibility"/>
+        <representation mediaType="application/json"/>
+        </response>
+        <response status="409"  xmlns="http://wadl.dev.java.net/2009/02">
+        <representation mediaType="application/xml"
+                        element="csapi:memberConflict"/>
+        <representation mediaType="application/json"/>
         </response>
     </method>
     <method name="PUT" id="updateImageMember-v2">
@@ -705,5 +718,10 @@
                 &member_idParameter;</representation>
         </request>
         <response status="204"/>
+        <response status="403"  xmlns="http://wadl.dev.java.net/2009/02">
+        <representation mediaType="application/xml"
+                        element="csapi:forbidden"/>
+        <representation mediaType="application/json"/>
+        </response>
     </method>
 </application>
