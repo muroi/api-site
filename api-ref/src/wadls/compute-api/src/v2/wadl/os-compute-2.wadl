@@ -357,8 +357,9 @@
              <para>Preconditions</para>
              <itemizedlist>
                  <listitem><para>The user must have enough server quota remaining
-                 to create a server requested.</para></listitem>
-                 <listitem><para>The connection to glance is valid.</para></listitem>
+                 to create the number of servers requested.</para></listitem>
+                 <listitem><para>The connection to the Image Service is
+                 valid.</para></listitem>
              </itemizedlist>
              <para>Asynchronous Postconditions</para>
              <itemizedlist>
@@ -379,6 +380,9 @@
                  <listitem><para>The compute node needs enough free resource to
                  match the specified resource of the server creation request.
                  </para></listitem>
+                 <listitem><para>Ensure the scheduler selection filter can
+                 fulfill the request with the available compute nodes that
+                 match the filter's selection criteria.</para></listitem>
              </itemizedlist>
         </wadl:doc>
         <request>
@@ -705,6 +709,8 @@
             <para>Preconditions</para>
             <itemizedlist>
                 <listitem><para>The specified server must exist.</para></listitem>
+                <listitem><para>Anyone can delete a server when the server's
+                status is not locked.</para></listitem>
                 <listitem><para>You can delete a server which status is
                 not locked.</para></listitem>
                 <listitem><para>If the specified server is locked, you need to
@@ -712,7 +718,7 @@
             </itemizedlist>
             <para>Asynchronous Postconditions</para>
             <itemizedlist>
-                <listitem><para>With correct permissions, you cann see the
+                <listitem><para>With correct permissions, you can see the
                 specified server status as <code>DELETED</code> through API
                 calls.</para></listitem>
                 <listitem><para>The port attached to the specified server
@@ -720,7 +726,7 @@
                 <listitem><para>The server is deleted in server index.
                 </para></listitem>
                 <listitem><para>The server managed by OpenStack Compute is
-                deleted in compute node.</para></listitem>
+                deleted on the compute node.</para></listitem>
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
