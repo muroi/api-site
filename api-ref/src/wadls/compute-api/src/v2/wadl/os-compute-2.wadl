@@ -723,7 +723,8 @@
                 calls.</para></listitem>
                 <listitem><para>The port attached to the specified server
                 is deleted.</para></listitem>
-                <listitem><para>The server is deleted in server index.
+                <listitem><para>The server is deleted from the list of
+                servers returned by an API calls.
                 </para></listitem>
                 <listitem><para>The server managed by OpenStack Compute is
                 deleted on the compute node.</para></listitem>
