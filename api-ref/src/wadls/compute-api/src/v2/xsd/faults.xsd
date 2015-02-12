@@ -178,14 +178,6 @@
       </xsd:documentation>
     </annotation>
   </element>
-  <element name="serverLocked" type="csapi:ServerLockedAPIFault">
-    <annotation>
-      <xsd:documentation xml:lang="EN"
-        xmlns="http://www.w3.org/1999/xhtml">
-        <p>The server is locked.</p>
-      </xsd:documentation>
-    </annotation>
-  </element>
 
   <!-- Complex Types -->
   <complexType name="ComputeAPIFault">
@@ -324,12 +316,6 @@
   </complexType>
 
   <complexType name="NotImplementedAPIFault">
-    <complexContent>
-      <extension base="csapi:ComputeAPIFault"> </extension>
-    </complexContent>
-  </complexType>
-
-  <complexType name="ServerLockedAPIFault">
     <complexContent>
       <extension base="csapi:ComputeAPIFault"> </extension>
     </complexContent>

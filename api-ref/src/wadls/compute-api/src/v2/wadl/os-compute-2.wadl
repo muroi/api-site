@@ -744,12 +744,7 @@
             </itemizedlist>
         </wadl:doc>
         <response status="204"/>
-        <!-- Common, GET, inProgress Faults--> &commonFaults; &getFaults;
-        <response status="409" xmlns="http://wadl.dev.java.net/2009/02">
-            <representation mediaType="application/xml" element="csapi:serverLocked"/>
-            <representation mediaType="application/json"/>
-        </response>
-    </method>
+        <!-- Common, GET, inProgress Faults--> &commonFaults; &getFaults; </method>
     <!-- Server Actions -->
     <method name="POST" id="changePassword">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Change password">
