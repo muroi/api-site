@@ -41,13 +41,49 @@
     <method name="POST" id="shelve">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Shelve server">
-            <para role="shortdesc">Shelves a running server and
-                changes its status to SHELVED_OFFLOADED.</para>
+            <para role="shortdesc">Shelves a running server.</para>
             <para>All associated data and resources are kept; however,
                 anything still in memory is not retained. To restore a
                 shelved instance, use the <code>unshelve</code>
                 action. To remove a shelved instance, use the
                     <code>shelveOffload</code> action.</para>
+              <para>Preconditions</para>
+              <itemizedlist>
+                  <listitem><para>The specified server must exist.
+                  </para></listitem>
+                  <listitem><para>You can only shelve a server which
+                  its status is <code>ACTIVE</code>, <code>SHUTOFF</code>,
+                  <code>PAUSED</code>, or <code>SUSPENDED</code>.
+                  </para></listitem>
+                  <listitem><para>If the specified server is locked,
+                  you need to have administrator privileges to shelve
+                  the server.</para></listitem>
+              </itemizedlist>
+              <para>Asynchronous Postconditions</para>
+              <itemizedlist>
+                  <listitem><para>With correct permissions, you can
+                  see the server's status as <code>SHELVED</code>
+                  through API calls.</para></listitem>
+                  <listitem><para>With correct permissions, you can
+                  see the shelved server image's status as
+                  <code>active</code> through API calls.</para></listitem>
+                  <listitem><para>With correct access, you can see
+                  the server's instance data on the compute node that
+                  the Compute service manages.</para></listitem>
+                  <listitem><para>The Compute service automatically
+                  deletes the instance on compute nodes and changes
+                  the server's status to <code>SHELVED_OFFLOADED</code>
+                  if the server is booted from volumes or
+                  shelved_offload_time is set to 0.</para></listitem>
+              </itemizedlist>
+              <para>Troubleshooting</para>
+              <itemizedlist>
+                  <listitem><para>If the server's status does not go
+                  to <code>SHELVED</code> or <code>SHELVED_OFFLOADED</code>,
+                  the request failed. Ensure you meet the preconditions
+                  or check if there is another operation that causes
+                  race conditions for the server.</para></listitem>
+              </itemizedlist>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -77,6 +113,34 @@
                 instance is no longer needed, you can move that
                 instance off the hypervisor to minimize resource
                 usage.</para>
+              <para>Preconditions</para>
+              <itemizedlist>
+                  <listitem><para>The specified server must exist.
+                  </para></listitem>
+                  <listitem><para>You can only shelve offload a server
+                  which its status is <code>SHELVED</code>.
+                  </para></listitem>
+                  <listitem><para>If the specified server is locked,
+                  you need to have administrator privileges to shelve
+                  offload the server.</para></listitem>
+              </itemizedlist>
+              <para>Asynchronous Postconditions</para>
+              <itemizedlist>
+                  <listitem><para>With correct permissions, you can
+                  see the server's status as <code>SHELVED_OFFLOADED</code>
+                  through API calls.</para></listitem>
+                  <listitem><para>With correct access, you can not
+                  see the server's instance data anymore on the
+                  compute node that Compute service manages.</para></listitem>
+              </itemizedlist>
+              <para>Troubleshooting</para>
+              <itemizedlist>
+                  <listitem><para>If the server's status does not go
+                  to <code>SHELVEDED_OFFLOADED</code>, the request
+                  failed. Ensure you meet the preconditions or check
+                  if there is another operation that causes race
+                  conditions for the server.</para></listitem>
+              </itemizedlist>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -101,6 +165,33 @@
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Restore shelved server">
             <para role="shortdesc">Restores a shelved server.</para>
+            <para>Preconditions</para>
+            <itemizedlist>
+                <listitem><para>The specified server must exist.
+                </para></listitem>
+                  <listitem><para>You can only unshelve a server which
+                  its status is <code>SHELVED</code>, or
+                  <code>SHELVED_OFFLOADED</code>.</para></listitem>
+                  <listitem><para>If the specified server is locked,
+                  you need to have administrator privileges to unshelve
+                  the server.</para></listitem>
+            </itemizedlist>
+            <para>Asynchronous Postconditions</para>
+            <itemizedlist>
+                  <listitem><para>With correct permissions, you can see
+                  the server's status as <code>ACTIVE</code> through API
+                  calls.</para></listitem>
+                  <listitem><para>The shelved image is deleted from the
+                  list of images returned by an API call.</para></listitem>
+            </itemizedlist>
+            <para>Troubleshooting</para>
+            <itemizedlist>
+                  <listitem><para>If the server's status does not go to
+                  <code>ACTIVE</code>, the request failed. Ensure you
+                  meet the preconditions or check if there is another
+                  operation that causes race conditions for the server.
+                  </para></listitem>
+            </itemizedlist>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
