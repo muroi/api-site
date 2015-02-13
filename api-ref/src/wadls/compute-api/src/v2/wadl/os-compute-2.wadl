@@ -754,7 +754,7 @@
                 <para>Preconditions</para>
                 <itemizedlist>
                   <listitem><para>The specified server must exist.</para></listitem>
-                  <listitem><para>You can only resize a server which status is
+                  <listitem><para>You can only resize a server when its status is
                   <code>ACTIVE</code> or <code>STOPPED</code>.</para></listitem>
                 <listitem><para>If the specified server is locked, you need to have
                 administrator privileges to resize the server.</para></listitem>
@@ -768,7 +768,7 @@
                 <listitem><para>With correct permissions, you can see the migration_status
                 as <code>finished</code> through API calls.</para></listitem>
                 <listitem><para>The Compute Service automatically confirms the resized
-                server if auto_confirm of the Compute Service is set to <code>True</code>.
+                server if auto_confirm of the Compute service is set to <code>True</code>.
                 </para></listitem>
             </itemizedlist>
         </wadl:doc>
@@ -793,13 +793,14 @@
                     <code>confirmResize</code> action in the request body.</para>
             <para>Preconditions</para>
             <itemizedlist>
-                <listitem><para>The specified server must exsists.</para></listitem>
-                <listitem><para>You can only confirm the resized server which status
+                <listitem><para>The specified server must exist.</para></listitem>
+                <listitem><para>You can only confirm the resized server where the status
                 is <code>VERIFY_RESIZED</code>.</para></listitem>
-                <listitem><para>You can only confirm the resized server which vm_status
+                <listitem><para>You can only confirm the resized server where the vm_status
                 is <code>RESIZED</code>.</para></listitem>
-                <listitem><para>You can only confirm the resized server which migration_status
-                is <code>finished</code> or <code>confirming</code>.</para></listitem>
+                <listitem><para>You can only confirm the resized server where the
+                migration_status is <code>finished</code> or <code>confirming</code>.
+                </para></listitem>
                 <listitem><para>If the specified server is locked, you need to have
                 administrator privileges to confirm the server.</para></listitem>
             </itemizedlist>
@@ -842,9 +843,9 @@
             <para>Preconditions</para>
             <itemizedlist>
                 <listitem><para>The specified server must exist.</para></listitem>
-                <listitem><para>You can only confirm the resized server which status
+                <listitem><para>You can only confirm the resized server where the status
                 is <code>VERIFY_RESIZE</code>.</para></listitem>
-                <listitem><para>You can only confirm the resized server which vm_status
+                <listitem><para>You can only confirm the resized server where the vm_status
                 is <code>RESIZED</code>.</para></listitem>
                 <listitem><para>If the specified server is locked, you need to have
                 administrator privileges to revert the resizing.</para></listitem>
@@ -889,9 +890,9 @@
                 in the request body.</para>
             <para>Preconditions</para>
             <itemizedlist>
-                <listitem><para>The specified server must exists.</para></listitem>
+                <listitem><para>The specified server must exist.</para></listitem>
                 <listitem><para>You can only create a new image from the server
-                which status is  <code>ACTIVE</code>, <code>STOPPED</code>,
+                when its status is <code>ACTIVE</code>, <code>STOPPED</code>,
                 <code>PAUSED</code>, or <code>SUSPENDED</code>.</para></listitem>
                 <listitem><para>The connection to the Image Service is valid.
                 </para></listitem>
@@ -909,8 +910,8 @@
                 another error status, the request failed. Ensure you meet the
                 preconditions then investigate the image backend.</para></listitem>
                 <listitem><para>If the server status does not go back to an original
-                server's status, the request failed. Ensure you meet the preconditions
-                or check if there is another operation which causes raceconditions
+                server's status, the request failed. Ensure you meet the preconditions,
+                or check if there is another operation that causes race conditions
                 for the server.</para></listitem>
                 <listitem><para>The image is not created in the image store that
                 OpenStack Image Service manages.</para></listitem>
