@@ -755,7 +755,7 @@
                 <itemizedlist>
                   <listitem><para>The specified server must exist.</para></listitem>
                   <listitem><para>You can only resize a server when its status is
-                  <code>ACTIVE</code> or <code>STOPPED</code>.</para></listitem>
+                  <code>ACTIVE</code> or <code>SHUTOFF</code>.</para></listitem>
                 <listitem><para>If the specified server is locked, you need to have
                 administrator privileges to resize the server.</para></listitem>
             </itemizedlist>
@@ -807,7 +807,7 @@
             <para>Asynchronous Postconditions</para>
             <itemizedlist>
                 <listitem><para>With correct permissions, you can see the server status
-                as <code>ACTIVE</code> or <code>STOPPED</code> through API calls.
+                as <code>ACTIVE</code> or <code>SHUTOFF</code> through API calls.
                 </para></listitem>
                 <listitem><para>With correct permissions, you can see the server's
                 migration_status is <code>confirmed</code>.</para></listitem>
@@ -853,7 +853,7 @@
             <para>Asynchronous Postconditions</para>
             <itemizedlist>
                 <listitem><para>With correct permissions, you can see the server's
-                status as <code>ACTIVE</code> or <code>STOPPED</code> through API
+                status as <code>ACTIVE</code> or <code>SHUTOFF</code> through API
                 calls.</para></listitem>
                 <listitem><para>With correct permissions, you can see the specified
                 server's migration_status is <code>reverted</code>.</para></listitem>
@@ -892,7 +892,7 @@
             <itemizedlist>
                 <listitem><para>The specified server must exist.</para></listitem>
                 <listitem><para>You can only create a new image from the server
-                when its status is <code>ACTIVE</code>, <code>STOPPED</code>,
+                when its status is <code>ACTIVE</code>, <code>SHUTOFF</code>,
                 <code>PAUSED</code>, or <code>SUSPENDED</code>.</para></listitem>
                 <listitem><para>The connection to the Image Service is valid.
                 </para></listitem>
