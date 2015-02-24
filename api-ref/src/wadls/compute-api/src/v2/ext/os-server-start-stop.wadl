@@ -39,31 +39,30 @@
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Start server">
             <para role="shortdesc">Starts a stopped server and changes
-                its status to ACTIVE.</para>
+                its status to <code>ACTIVE</code>.</para>
             <para>Preconditions</para>
             <itemizedlist>
-                  <listitem><para>You can only start a server which
-                  its status is <code>SHUTOFF</code>.</para></listitem>
+                  <listitem><para>The server must be <code>SHUTOFF</code>.
+                  </para></listitem>
                 <listitem><para>If the specified server is locked, you
-                need to have administrator privileges to start the
-                server.</para></listitem>
+                must have administrator privileges to start the server.
+                </para></listitem>
             </itemizedlist>
             <para>Asynchronous Postconditions</para>
             <itemizedlist>
-              <listitem><para>With correct permissions, you can see
-              the server's status as <code>ACTIVE</code> through API
-              calls.</para></listitem>
-              <listitem><para>With correct access, you can see the
-              started server in the compute node that Compute service
-              manages.</para></listitem>
+              <listitem><para>After you successfully start a server,
+              its status changes to <code>ACTIVE</code> and you can
+              also see the server on the compute node that the Compute
+              service manages.</para></listitem>
             </itemizedlist>
             <para>Troubleshooting</para>
             <itemizedlist>
-                  <listitem><para>If the server's status does not go
-                  to <code>ACTIVE</code>, the request failed. Ensure
-                  you meet the preconditions or check if there is
-                  another operation that causes race conditions for
-                  the server.</para></listitem>
+                  <listitem><para>If the server's status does not change
+                  to <code>ACTIVE</code>, the start operation failed. Ensure
+                  you meet the preconditions and run the request again.
+                  If the request fails again, investigate whether another
+                  operation is running that causes a race condition.
+                  </para></listitem>
             </itemizedlist>
         </wadl:doc>
         <request>
@@ -102,23 +101,20 @@
                 its status to <code>SHUTOFF</code>.</para>
             <para>Preconditions</para>
             <itemizedlist>
-                <listitem><para>The specified server must exist.
-                </para></listitem>
-                  <listitem><para>You can only stop a server which
-                  its status is <code>ACTIVE</code> or <code>ERROR</code>.
+                  <listitem><para>The server status must be
+                  <code>ACTIVE</code> or <code>ERROR</code>.
                   </para></listitem>
                 <listitem><para>If the specified server is locked,
-                you need to have administrator privileges to stop
+                you must have administrator privileges to stop
                 the server.</para></listitem>
             </itemizedlist>
             <para>Asynchronous Postconditions</para>
             <itemizedlist>
-                  <listitem><para>With correct permissions, you can
-                  see the server's status as <code>SHUTOFF</code>
-                  through API calls.</para></listitem>
-                  <listitem><para>With correct access, you can see
-                  the server's instance data on the compute node
-                  that Compute service manages.</para></listitem>
+                  <listitem><para>After you successfully stop a server,
+                  its status changes to <code>SHUTOFF</code> and you
+                  can only see the server's instance data on the
+                  compute node that Compute service manages.
+                  </para></listitem>
             </itemizedlist>
         </wadl:doc>
         <request>
